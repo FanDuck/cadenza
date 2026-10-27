@@ -226,6 +226,7 @@ scripts/          build (tsc API, no bundler), demo server, asset generators
 
 | Document | Contents |
 | --- | --- |
+| [Getting started (中文)](docs/GETTING-STARTED.zh-CN.md) | Step-by-step guide for readers with no programming background |
 | [ARCHITECTURE.md](docs/ARCHITECTURE.md) | How the pieces fit, and the rules that keep them apart |
 | [PLUGIN_API.md](docs/PLUGIN_API.md) | Manifest, context, slots, commands, lifecycle |
 | [THEMING.md](docs/THEMING.md) | Token list, theme files, runtime overrides |

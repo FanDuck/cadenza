@@ -193,6 +193,7 @@ scripts/          构建（直接调用 tsc，无打包器）、演示服务器�
 
 | 文档 | 内容 |
 | --- | --- |
+| [新手上手手册](docs/GETTING-STARTED.zh-CN.md) | **零编程基础也能跟着做**：环境、运行、截图、装插件、提交改动 |
 | [ARCHITECTURE.md](docs/ARCHITECTURE.md) | 各模块如何协作，以及维持边界的规则 |
 | [PLUGIN_API.md](docs/PLUGIN_API.md) | 清单、上下文、插槽、命令、生命周期 |
 | [THEMING.md](docs/THEMING.md) | 令牌清单、主题文件、运行时覆盖 |
