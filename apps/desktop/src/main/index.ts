@@ -33,6 +33,22 @@ if (!app.requestSingleInstanceLock()) {
 registerSchemes();
 app.setAppUserModelId("dev.fanduck.cadenza");
 
+/**
+ * Compatibility mode (`--safe`).
+ *
+ * On some machines Chromium cannot spawn its GPU process ("GPU process launch
+ * failed ... isn't usable"), and the window dies before it ever appears. Running
+ * the GPU work inside the browser process and disabling the sandbox makes
+ * Cadenza start there. It is opt-in because it costs some isolation.
+ */
+const SAFE_MODE = process.argv.includes("--safe");
+if (SAFE_MODE) {
+  app.commandLine.appendSwitch("in-process-gpu");
+  app.commandLine.appendSwitch("disable-gpu-sandbox");
+  app.commandLine.appendSwitch("no-sandbox");
+  app.commandLine.appendSwitch("disable-dev-shm-usage");
+}
+
 let mainWindow: BrowserWindow | null = null;
 let disposeMediaKeys: (() => void) | null = null;
 

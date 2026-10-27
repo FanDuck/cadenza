@@ -10,6 +10,7 @@
   "scripts": {
     "build": "node ../../scripts/build.mjs",
     "start": "electron .",
+    "start:safe": "electron . --safe",
     "dev": "electron . --dev",
     "screenshot": "electron . --screenshot=../../screenshots/app.png",
     "typecheck": "tsc -p tsconfig.main.json --noEmit && tsc -p tsconfig.renderer.json --noEmit",

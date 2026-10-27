@@ -12,6 +12,7 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -67,6 +68,20 @@ try {
   const mapMatch = /<script[^>]+type=["']importmap["'][^>]*>([\s\S]*?)<\/script>/i.exec(html);
   if (!mapMatch) problems.push("index.html has no <script type=\"importmap\">");
   const importMap = mapMatch ? JSON.parse(mapMatch[1]) : { imports: {} };
+
+  // A CSP without the import map's hash silently blocks it: the map is ignored,
+  // bare specifiers fail to resolve and the window stays blank. Catch it here.
+  if (mapMatch) {
+    const cspMeta = /<meta[^>]+http-equiv=["']Content-Security-Policy["'][^>]+content="([^"]*)"/i.exec(html);
+    const policy = cspMeta?.[1] ?? "";
+    const digest = crypto.createHash("sha256").update(mapMatch[1], "utf8").digest("base64");
+    if (!policy.includes(`'sha256-${digest}'`)) {
+      problems.push(
+        `CSP does not allow the inline import map (expected 'sha256-${digest}' in script-src). ` +
+          "The renderer will load, fail to resolve its imports and paint nothing.",
+      );
+    }
+  }
 
   const scriptMatch = /<script[^>]+type=["']module["'][^>]+src=["']([^"']+)["']/i.exec(html);
   if (!scriptMatch) problems.push("index.html has no module script");

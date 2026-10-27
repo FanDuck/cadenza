@@ -17,6 +17,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "start": "pnpm build && pnpm --filter @fanduck/cadenza-desktop start",
+    "start:safe": "pnpm build && pnpm --filter @fanduck/cadenza-desktop start:safe",
     "dev": "pnpm build && pnpm --filter @fanduck/cadenza-desktop dev",
     "demo": "pnpm build && node scripts/serve-demo.mjs",
     "screenshot": "pnpm build && pnpm --filter @fanduck/cadenza-desktop screenshot",

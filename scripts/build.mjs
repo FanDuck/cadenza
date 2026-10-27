@@ -12,6 +12,7 @@
 import ts from "typescript";
 import fs from "node:fs";
 import path from "node:path";
+import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -81,7 +82,48 @@ function copyStatic() {
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.copyFileSync(source, target);
   }
+  hashInlineScripts();
   console.log("[static] renderer assets copied");
+}
+
+/**
+ * Rewrite the CSP in the built index.html so the inline import map is allowed.
+ *
+ * A `<script type="importmap">` is an inline script: a strict `script-src 'self'`
+ * blocks it, the import map is ignored, and every bare specifier fails to
+ * resolve - the page renders blank with no visible error. Rather than weaken the
+ * policy with 'unsafe-inline', the build computes the hash of the exact inline
+ * script and allow-lists only that.
+ */
+function hashInlineScripts() {
+  const file = path.join(root, "apps/desktop/dist/renderer/index.html");
+  if (!fs.existsSync(file)) return;
+
+  let html = fs.readFileSync(file, "utf8");
+  const hashes = [];
+
+  const inlineScript = /<script(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script>/gi;
+  html = html.replace(inlineScript, (match, attributes, body) => {
+    const digest = crypto.createHash("sha256").update(body, "utf8").digest("base64");
+    hashes.push(`'sha256-${digest}'`);
+    return match;
+  });
+
+  if (hashes.length === 0) return;
+
+  html = html.replace(
+    /(<meta[^>]+http-equiv=["']Content-Security-Policy["'][^>]+content=")([^"]*)(")/i,
+    (_match, prefix, policy, suffix) => {
+      // Drop any hash from a previous build, then add the current ones.
+      const cleaned = policy
+        .replace(/'sha256-[A-Za-z0-9+/=]+'\s*/g, "")
+        .replace(/script-src([^;]*);/, (_m, sources) => `script-src${sources.trimEnd()} ${hashes.join(" ")};`);
+      return `${prefix}${cleaned}${suffix}`;
+    },
+  );
+
+  fs.writeFileSync(file, html);
+  console.log(`[static] csp allows ${hashes.length} inline script(s): ${hashes.join(" ").slice(0, 24)}...`);
 }
 
 const started = Date.now();
