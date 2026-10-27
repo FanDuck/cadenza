@@ -1,0 +1,9 @@
+{
+  "id": "accent-cycle",
+  "name": "Accent Cycle",
+  "version": "0.1.0",
+  "description": "Shows the theme API: a command and a hotkey-style button that cycle the accent colour.",
+  "author": "FanDuck",
+  "main": "index.js",
+  "cadenza": "^0.1.0"
+}

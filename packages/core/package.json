@@ -1,0 +1,39 @@
+{
+  "name": "@fanduck/cadenza-core",
+  "version": "0.1.0",
+  "description": "UI-agnostic playback, library, metadata and plugin engine for Cadenza",
+  "license": "MIT",
+  "author": "FanDuck",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "music",
+    "player",
+    "audio",
+    "metadata",
+    "id3",
+    "flac",
+    "framework",
+    "windows"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test \"test/*.test.ts\"",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

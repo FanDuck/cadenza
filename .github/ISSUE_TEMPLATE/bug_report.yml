@@ -1,0 +1,66 @@
+name: Bug report
+description: Something in Cadenza does not work as expected
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this. A good report gets fixed much faster.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what actually happened?
+      placeholder: I pressed play and the app froze with the spinner forever.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open Cadenza
+        2. Add the folder D:\Music
+        3. Double-click any FLAC file
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Cadenza version
+      description: Settings → About shows the version, or run `git describe --tags`.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 23H2 (22631.4317)
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Playback / audio
+        - Library scanning / metadata
+        - User interface
+        - Plugins
+        - Lyrics
+        - Playlists
+        - Build / packaging
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / screenshots
+      description: |
+        Run with `pnpm start -- --dev` and paste anything printed in the terminal or the DevTools console.
+      render: shell
+    validations:
+      required: false

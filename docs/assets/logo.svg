@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Cadenza logo">
+  <defs>
+    <linearGradient id="cz-brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="100%" stop-color="#22d3ee" />
+    </linearGradient>
+    <radialGradient id="cz-glow" cx="22%" cy="14%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.28" />
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="118" fill="url(#cz-brand)" />
+  <rect width="512" height="512" rx="118" fill="url(#cz-glow)" />
+
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#ffffff" stroke-opacity="0.82" stroke-width="9" />
+
+  <g fill="#ffffff" transform="rotate(-6 256 256)">
+    <rect x="228" y="140" width="12" height="150" rx="6" />
+    <rect x="300" y="126" width="12" height="150" rx="6" />
+    <rect x="228" y="140" width="84" height="14" rx="7" />
+    <ellipse cx="219" cy="292" rx="24" ry="19" transform="rotate(-18 219 292)" />
+    <ellipse cx="291" cy="278" rx="24" ry="19" transform="rotate(-18 291 278)" />
+  </g>
+</svg>

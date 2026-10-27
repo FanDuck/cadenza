@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Strict CSP: no inline scripts, no eval. The import map below is allowed
+      (and required) because Cadenza ships unbundled native ES modules. Inline
+      styles are needed because a theme is applied by setting CSS variables on
+      <html> via the CSSOM.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: cadenza: cadenza-media:; media-src 'self' blob: cadenza: cadenza-media:; font-src 'self' data:;"
+    />
+    <title>Cadenza</title>
+    <meta name="description" content="Cadenza - a plugin-first music player framework" />
+    <meta name="color-scheme" content="dark light" />
+
+    <!--
+      Everything is served from the repository root (app://cadenza in Electron,
+      http://127.0.0.1:5199 in the browser demo), so absolute paths work in both.
+      CSS comes from src/, JS comes from dist/ - hence the absolute CSS URL and
+      the relative module script.
+    -->
+    <link rel="stylesheet" href="/packages/ui/src/theme.css" />
+    <link rel="stylesheet" href="/apps/desktop/src/renderer/styles/app.css" />
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@fanduck/cadenza-core": "/packages/core/dist/index.js",
+          "@fanduck/cadenza-ui": "/packages/ui/dist/index.js",
+          "@fanduck/cadenza-ui/theme.css": "/packages/ui/src/theme.css"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app" class="app"></div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "id": "hello-world",
+  "name": "Hello World",
+  "version": "0.1.0",
+  "description": "The smallest possible Cadenza plugin: a command, a sidebar button and a toast.",
+  "author": "FanDuck",
+  "main": "index.js",
+  "cadenza": "^0.1.0"
+}

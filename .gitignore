@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+out/
+release/
+*.tsbuildinfo
+
+# local env
+.env
+.env.local
+
+# editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# generated screenshots (the committed one is screenshots/app.png)
+screenshots/*.tmp.png
+.tmp/

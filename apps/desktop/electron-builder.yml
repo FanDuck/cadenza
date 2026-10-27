@@ -1,0 +1,41 @@
+# electron-builder configuration.
+#
+# Packaging is still marked experimental in the roadmap: the assembled folder in
+# release/app is produced by `node scripts/package-app.mjs`, then
+#
+#   npx electron-builder --win --config apps/desktop/electron-builder.yml
+#
+# turns it into an NSIS installer and a portable .exe.
+appId: dev.fanduck.cadenza
+productName: Cadenza
+copyright: Copyright (c) 2026 FanDuck
+
+directories:
+  app: ../../release/app
+  output: ../../release/dist
+  buildResources: ../../apps/desktop/resources
+
+files:
+  - "**/*"
+  - "!**/*.map"
+
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+  icon: ../../apps/desktop/resources/icon.ico
+  artifactName: ${productName}-${version}-${arch}.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: Cadenza
+  deleteAppDataOnUninstall: false
+
+portable:
+  artifactName: ${productName}-${version}-portable.${ext}

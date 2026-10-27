@@ -1,0 +1,34 @@
+{
+  "name": "cadenza",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cadenza - a plugin-first music player framework for Windows",
+  "license": "MIT",
+  "author": "FanDuck",
+  "homepage": "https://github.com/FanDuck/cadenza#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FanDuck/cadenza.git"
+  },
+  "packageManager": "pnpm@11.28.5",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "start": "pnpm build && pnpm --filter @fanduck/cadenza-desktop start",
+    "dev": "pnpm build && pnpm --filter @fanduck/cadenza-desktop dev",
+    "demo": "pnpm build && node scripts/serve-demo.mjs",
+    "screenshot": "pnpm build && pnpm --filter @fanduck/cadenza-desktop screenshot",
+    "test": "node scripts/build.mjs && pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "check:bundle": "node scripts/check-bundle.mjs",
+    "package": "pnpm build && node scripts/package-app.mjs",
+    "clean": "pnpm -r clean"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@fanduck/cadenza-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cadenza reference desktop player for Windows",
+  "license": "MIT",
+  "author": "FanDuck",
+  "type": "module",
+  "main": "dist/main/index.js",
+  "scripts": {
+    "build": "node ../../scripts/build.mjs",
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "screenshot": "electron . --screenshot=../../screenshots/app.png",
+    "typecheck": "tsc -p tsconfig.main.json --noEmit && tsc -p tsconfig.renderer.json --noEmit",
+    "test": "node --test \"test/*.test.ts\"",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "dependencies": {
+    "@fanduck/cadenza-core": "workspace:*",
+    "@fanduck/cadenza-ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "electron": "33.4.11",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.9.3"
+  }
+}

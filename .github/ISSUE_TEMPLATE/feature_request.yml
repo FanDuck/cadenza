@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest an idea for Cadenza
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Describe the situation, not the implementation.
+      placeholder: My library has 40k tracks and the album grid takes a second to appear.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What would you like to happen?
+      placeholder: Virtualize the album grid so only visible cards render.
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of change is this?
+      options:
+        - Core player / library behaviour
+        - User interface
+        - Plugin API
+        - Theme API
+        - Documentation
+        - Developer experience
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: false

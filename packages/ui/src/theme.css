@@ -1,0 +1,91 @@
+/**
+ * Cadenza design tokens.
+ *
+ * This file is intentionally framework-free: it only declares CSS custom
+ * properties (plus `color-scheme`). Load it once at the document level and the
+ * variables inherit into every shadow root of the UI kit, where components read
+ * them through `var(--cz-*)`.
+ *
+ * The default palette is the "midnight" theme. Set `data-theme="light"` on the
+ * root element for the built-in daylight theme. Hosts may add their own themes
+ * by overriding any of these variables on `:root` / `[data-theme="..."]`; the
+ * names are part of the public API.
+ */
+
+:root {
+  color-scheme: dark;
+
+  /* surfaces */
+  --cz-bg: #08090d;
+  --cz-bg-soft: #0e1016;
+  --cz-surface: #14171f;
+  --cz-surface-2: #1b1f29;
+  --cz-surface-3: #232834;
+
+  /* hairlines */
+  --cz-border: rgba(255, 255, 255, 0.08);
+  --cz-border-strong: rgba(255, 255, 255, 0.14);
+
+  /* type */
+  --cz-text: #eef1f8;
+  --cz-text-dim: #9aa4bb;
+  --cz-text-mute: #6b7488;
+
+  /* accent */
+  --cz-accent: #8b5cf6;
+  --cz-accent-2: #22d3ee;
+  --cz-accent-soft: rgba(139, 92, 246, 0.16);
+  --cz-grad: linear-gradient(135deg, #8b5cf6, #22d3ee);
+
+  /* semantic */
+  --cz-danger: #f87171;
+  --cz-success: #34d399;
+
+  /* geometry */
+  --cz-radius: 16px;
+  --cz-radius-sm: 10px;
+  --cz-radius-pill: 999px;
+
+  /* elevation */
+  --cz-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --cz-shadow-2: 0 18px 40px rgba(0, 0, 0, 0.45);
+
+  /* typefaces */
+  --cz-font: "Segoe UI Variable Display", "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system,
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+  --cz-mono: "Cascadia Code", ui-monospace, Consolas, monospace;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* surfaces */
+  --cz-bg: #f4f5fa;
+  --cz-bg-soft: #eef0f6;
+  --cz-surface: #ffffff;
+  --cz-surface-2: #f3f4f9;
+  --cz-surface-3: #e8eaf2;
+
+  /* hairlines */
+  --cz-border: rgba(15, 23, 42, 0.09);
+  --cz-border-strong: rgba(15, 23, 42, 0.17);
+
+  /* type */
+  --cz-text: #121620;
+  --cz-text-dim: #4b5568;
+  --cz-text-mute: #7a8497;
+
+  /* accent */
+  --cz-accent: #7c3aed;
+  --cz-accent-2: #0891b2;
+  --cz-accent-soft: rgba(124, 58, 237, 0.13);
+  --cz-grad: linear-gradient(135deg, #7c3aed, #0891b2);
+
+  /* semantic */
+  --cz-danger: #dc2626;
+  --cz-success: #059669;
+
+  /* elevation reads lighter on paper */
+  --cz-shadow-1: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --cz-shadow-2: 0 18px 40px rgba(15, 23, 42, 0.14);
+}

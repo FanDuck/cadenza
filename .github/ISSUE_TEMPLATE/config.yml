@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/FanDuck/cadenza/tree/main/docs
+    about: Architecture, plugin API and theming guides live in /docs.
+  - name: Questions & ideas
+    url: https://github.com/FanDuck/cadenza/discussions
+    about: Ask questions or show what you built with Cadenza.
