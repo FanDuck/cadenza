@@ -1,5 +1,6 @@
 {
   "name": "@fanduck/cadenza-desktop",
+  "productName": "Cadenza",
   "version": "0.1.0",
   "private": true,
   "description": "Cadenza reference desktop player for Windows",

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Generate Cadenza's raster assets (app icon + taskbar glyphs).
 
 This is a one-off asset script, not part of the build. Run it only when the

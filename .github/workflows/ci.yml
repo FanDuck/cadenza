@@ -54,6 +54,9 @@ jobs:
       - name: Check documentation links
         run: node scripts/check-links.mjs
 
+      - name: Check text encoding
+        run: node scripts/check-encoding.mjs
+
       - name: Verify renderer artifacts
         shell: pwsh
         run: |

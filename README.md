@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 <img src="docs/assets/banner.png" alt="Cadenza - a plugin-first music player framework for Windows" width="100%" />
 
@@ -12,7 +12,7 @@
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4.svg)](#requirements)
 [![No bundler](https://img.shields.io/badge/build-tsc%20only-success.svg)](docs/ARCHITECTURE.md)
 
-[Quick start](#quick-start) 路 [Features](#features) 路 [Write a plugin](#write-your-first-plugin) 路 [Architecture](docs/ARCHITECTURE.md) 路 [Docs](#documentation) 路 [涓枃璇存槑](README.zh-CN.md)
+[Quick start](#quick-start) · [Features](#features) · [Write a plugin](#write-your-first-plugin) · [Architecture](docs/ARCHITECTURE.md) · [Docs](#documentation) · [中文说明](README.zh-CN.md)
 
 </div>
 
@@ -20,21 +20,28 @@
 
 Cadenza is two things at once:
 
-1. **A framework.** `@fanduck/cadenza-core` is a UI-agnostic engine 鈥?queue, player state
+1. **A framework.** `@fanduck/cadenza-core` is a UI-agnostic engine — queue, player state
    machine, library, tag parsing, lyrics, playlists, and a plugin host. It has no DOM,
    no Electron and no framework dependency. Drop it into your own app and build the
    player *you* want.
 2. **A player.** `apps/desktop` is a complete, themeable Windows desktop player built on
-   that engine 鈥?the reference implementation, and the proof that the framework is good
+   that engine — the reference implementation, and the proof that the framework is good
    enough to ship.
 
 Most music players are sealed boxes. Cadenza is meant to be opened: plugins get the same
 powers as the built-in UI, and the UI itself is replaceable.
 
+## Screenshots
+
+![Cadenza library view, playing a track](screenshots/app.png)
+
+*The browser demo (`pnpm demo`) with sample data. The desktop app is identical, minus the
+DEMO chip — run `pnpm screenshot` to capture your own library.*
+
 ## Features
 
 **Playback**
-- MP3, FLAC, WAV, M4A/M4B (AAC & ALAC), Ogg Vorbis, Opus 鈥?with full tag support.
+- MP3, FLAC, WAV, M4A/M4B (AAC & ALAC), Ogg Vorbis, Opus — with full tag support.
   AIFF and WMA are scanned and playable when the codec is available, but their tags
   are not parsed yet
 - Shuffle, repeat off/all/one, seek with keyboard, volume, mute
@@ -42,7 +49,7 @@ powers as the built-in UI, and the UI itself is replaceable.
 - Restores your queue, volume, shuffle and repeat mode on startup
 
 **Library**
-- Recursive folder scanning in the main process 鈥?the UI never blocks
+- Recursive folder scanning in the main process — the UI never blocks
 - Tag reading written from scratch (no native modules): ID3v2.2/2.3/2.4, Vorbis comments,
   MP4 atoms, RIFF/WAVE, with embedded cover art extracted and cached
 - Diacritic-insensitive search across title, artist, album and path
@@ -87,7 +94,7 @@ No Node yet? Install it from [nodejs.org](https://nodejs.org) (LTS), then run
 pnpm demo
 ```
 
-Opens the same UI in your browser with sample data 鈥?no audio files, no Electron.
+Opens the same UI in your browser with sample data — no audio files, no Electron.
 Handy for screenshots and for front-end work.
 
 ### Screenshot
@@ -137,7 +144,7 @@ export default {
 };
 ```
 
-Click **Settings 鈫?Plugins 鈫?Reload plugins**. No build step, no dependencies.
+Click **Settings → Plugins → Reload plugins**. No build step, no dependencies.
 
 Two working examples live in [`examples/plugins`](examples/plugins):
 [`hello-world`](examples/plugins/hello-world) (commands, slots, listeners) and
@@ -188,9 +195,9 @@ Built in: **Midnight** (default), **Daylight**, **Synthwave**. See
 | Keys | Action |
 | --- | --- |
 | `Space` | Play / pause |
-| `鈫恅 / `鈫抈 | Seek 鈭?s |
-| `Ctrl+鈫恅 / `Ctrl+鈫抈 | Previous / next track |
-| `鈫慲 / `鈫揱 | Volume |
+| `←` / `→` | Seek ∓5s |
+| `Ctrl+←` / `Ctrl+→` | Previous / next track |
+| `↑` / `↓` | Volume |
 | `M` | Mute |
 | `S` | Shuffle |
 | `R` | Cycle repeat mode |
@@ -226,7 +233,7 @@ scripts/          build (tsc API, no bundler), demo server, asset generators
 
 | Document | Contents |
 | --- | --- |
-| [Getting started (涓枃)](docs/GETTING-STARTED.zh-CN.md) | Step-by-step guide for readers with no programming background |
+| [Getting started (中文)](docs/GETTING-STARTED.zh-CN.md) | Step-by-step guide for readers with no programming background |
 | [ARCHITECTURE.md](docs/ARCHITECTURE.md) | How the pieces fit, and the rules that keep them apart |
 | [PLUGIN_API.md](docs/PLUGIN_API.md) | Manifest, context, slots, commands, lifecycle |
 | [THEMING.md](docs/THEMING.md) | Token list, theme files, runtime overrides |
@@ -236,14 +243,14 @@ scripts/          build (tsc API, no bundler), demo server, asset generators
 
 ## Status
 
-**0.1.0 鈥?usable, pre-1.0.** Playback, library, lyrics, playlists, themes and the plugin
+**0.1.0 — usable, pre-1.0.** Playback, library, lyrics, playlists, themes and the plugin
 API work. Packaging an installer is the next milestone; for now run from source
 (see [ROADMAP](docs/ROADMAP.md)). Within `0.x`, minor versions may change the plugin API;
 breaking changes get a migration note in the [changelog](CHANGELOG.md).
 
 ## Contributing
 
-Bug reports, plugin ideas and pull requests are welcome 鈥?especially from people who are
+Bug reports, plugin ideas and pull requests are welcome — especially from people who are
 new to programming. Read [CONTRIBUTING.md](CONTRIBUTING.md) and be kind
 ([CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)).
 
@@ -251,7 +258,7 @@ Security issues: [SECURITY.md](SECURITY.md).
 
 ## License
 
-[MIT](LICENSE) 漏 2026 FanDuck
+[MIT](LICENSE) © 2026 FanDuck
 
 The name "Cadenza" and the logo are used as project identity. Sample data and the
 duck-eared note mark are original work.

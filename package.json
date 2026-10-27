@@ -26,6 +26,7 @@
     "typecheck": "node scripts/build.mjs && pnpm -r typecheck",
     "check:bundle": "node scripts/check-bundle.mjs",
     "check:links": "node scripts/check-links.mjs",
+    "check:encoding": "node scripts/check-encoding.mjs",
     "package": "pnpm build && node scripts/package-app.mjs",
     "clean": "pnpm -r clean"
   },

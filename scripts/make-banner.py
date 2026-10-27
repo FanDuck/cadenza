@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Render the repository banner / GitHub social preview (1280x640).
 
 One-off asset script. Requires Pillow.
