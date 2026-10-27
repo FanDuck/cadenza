@@ -28,10 +28,12 @@
     "check:links": "node scripts/check-links.mjs",
     "check:encoding": "node scripts/check-encoding.mjs",
     "package": "pnpm build && node scripts/package-app.mjs",
+    "dist": "pnpm package && electron-builder --win --config apps/desktop/electron-builder.yml",
     "clean": "pnpm -r clean"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
+    "electron-builder": "^26.18.0",
     "jsdom": "^25.0.1",
     "typescript": "^5.9.3"
   }

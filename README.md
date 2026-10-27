@@ -31,6 +31,19 @@ Cadenza is two things at once:
 Most music players are sealed boxes. Cadenza is meant to be opened: plugins get the same
 powers as the built-in UI, and the UI itself is replaceable.
 
+## Download
+
+Prebuilt Windows packages are attached to every [release](https://github.com/FanDuck/cadenza/releases):
+
+| File | What it is |
+| --- | --- |
+| `Cadenza-Setup-*.exe` | Installer (per-user, choose the install folder) |
+| `Cadenza-*-portable.exe` | Single executable, nothing to install |
+| `Cadenza-*-win.zip` | Unpacked build, run `Cadenza.exe` |
+
+> The builds are unsigned, so Windows SmartScreen warns on first run: click
+> **More info → Run anyway**. See [docs/RELEASING.md](docs/RELEASING.md).
+
 ## Screenshots
 
 ![Cadenza library view, playing a track](screenshots/app.png)
@@ -239,6 +252,7 @@ scripts/          build (tsc API, no bundler), demo server, asset generators
 | [THEMING.md](docs/THEMING.md) | Token list, theme files, runtime overrides |
 | [EMBEDDING.md](docs/EMBEDDING.md) | Use the core in your own app |
 | [ROADMAP.md](docs/ROADMAP.md) | What is planned |
+| [RELEASING.md](docs/RELEASING.md) | How releases and installers are produced |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Setup, conventions, PR checklist |
 
 ## Status

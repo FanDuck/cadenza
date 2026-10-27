@@ -1,23 +1,31 @@
 # electron-builder configuration.
 #
-# Packaging is still marked experimental in the roadmap: the assembled folder in
-# release/app is produced by `node scripts/package-app.mjs`, then
+#   pnpm package        assemble release/app (see scripts/package-app.mjs)
+#   pnpm dist           build an NSIS installer + a portable .exe in release/dist
 #
-#   npx electron-builder --win --config apps/desktop/electron-builder.yml
-#
-# turns it into an NSIS installer and a portable .exe.
+# The app is unsigned: Windows SmartScreen will warn on first run until a code
+# signing certificate is configured (see docs/RELEASING.md).
 appId: dev.fanduck.cadenza
 productName: Cadenza
 copyright: Copyright (c) 2026 FanDuck
 
+# Paths are resolved from the repository root, which is where `pnpm dist` runs.
 directories:
-  app: ../../release/app
-  output: ../../release/dist
-  buildResources: ../../apps/desktop/resources
+  app: release/app
+  output: release/dist
+  buildResources: apps/desktop/resources
+
+# Resolve Electron from the devDependency instead of looking inside the app dir,
+# which only contains the compiled output.
+electronVersion: 33.4.11
+asar: true
+asarUnpack:
+  - "apps/desktop/resources/**"
 
 files:
   - "**/*"
   - "!**/*.map"
+  - "!**/node_modules/**"
 
 win:
   target:
@@ -25,7 +33,9 @@ win:
       arch: [x64]
     - target: portable
       arch: [x64]
-  icon: ../../apps/desktop/resources/icon.ico
+    - target: zip
+      arch: [x64]
+  icon: apps/desktop/resources/icon.ico
   artifactName: ${productName}-${version}-${arch}.${ext}
 
 nsis:
@@ -36,6 +46,7 @@ nsis:
   createStartMenuShortcut: true
   shortcutName: Cadenza
   deleteAppDataOnUninstall: false
+  artifactName: ${productName}-Setup-${version}.${ext}
 
 portable:
   artifactName: ${productName}-${version}-portable.${ext}
