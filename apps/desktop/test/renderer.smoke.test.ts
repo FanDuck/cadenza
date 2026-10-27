@@ -9,7 +9,7 @@
  * without throwing, and do the main views produce DOM?".
  */
 
-import { test } from "node:test";
+import { test, after } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -43,6 +43,16 @@ async function loadJSDOM(): Promise<JSDOMLike> {
 }
 
 const jsdom = await loadJSDOM();
+
+/**
+ * The demo bridge keeps a 250ms interval alive once playback starts. jsdom
+ * timers keep the Node event loop busy, so the window is closed after the tests
+ * or the test process would never exit.
+ */
+let activeWindow: { close(): void } | null = null;
+after(() => {
+  activeWindow?.close();
+});
 
 /** Minimal 2D context so the visualiser does not explode without node-canvas. */
 function fakeContext2d() {
@@ -214,6 +224,7 @@ function installDom() {
 
 test("renderer boots in jsdom and paints the shell", async () => {
   const window = installDom();
+  activeWindow = window;
 
   // The demo bridge takes over because window.cadenza is absent.
   await import(`file://${entry.replace(/\\/g, "/")}`);
@@ -241,6 +252,68 @@ test("renderer boots in jsdom and paints the shell", async () => {
   // Demo library should have tracks on screen (library view is the default).
   const rows = app.querySelectorAll("cz-track-list");
   assert.ok(rows.length > 0, "a track list is mounted");
+
+  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  const click = (element: Element) =>
+    element.dispatchEvent(new window.MouseEvent("click", { bubbles: true, composed: true, cancelable: true }));
+
+  // --- navigating to Albums renders an album grid -------------------------
+  const albumsNav = [...app.querySelectorAll("button")].find((button) =>
+    /^album/i.test((button.textContent ?? "").trim()),
+  );
+  assert.ok(albumsNav, "the sidebar has an Albums entry");
+  click(albumsNav);
+  await sleep(150);
+
+  const albumCards = app.querySelectorAll(".album-card");
+  assert.ok(albumCards.length >= 4, `album grid rendered (${albumCards.length} cards)`);
+
+  // --- command palette opens, lists commands and closes on Escape ---------
+  doc.dispatchEvent(new window.KeyboardEvent("keydown", { key: "k", ctrlKey: true, bubbles: true }));
+  await sleep(150);
+
+  const palette = doc.querySelector(".palette");
+  assert.ok(palette, "Ctrl+K opens the command palette");
+  const paletteItems = palette.querySelectorAll("[role='option'], .palette__item, button");
+  assert.ok(paletteItems.length > 10, `palette lists commands (${paletteItems.length} entries)`);
+
+  // Escape is handled by the palette input, which owns focus in a real window.
+  const paletteInput = palette.querySelector<HTMLInputElement>("input");
+  paletteInput?.focus();
+  (paletteInput ?? palette).dispatchEvent(
+    new window.KeyboardEvent("keydown", { key: "Escape", bubbles: true, cancelable: true }),
+  );
+  await sleep(150);
+
+  /** The palette hides itself rather than removing its DOM, so check ancestors. */
+  const isHidden = (element: Element | null): boolean => {
+    let node: Element | null = element;
+    while (node) {
+      if ((node as HTMLElement).hidden) return true;
+      node = node.parentElement;
+    }
+    return false;
+  };
+  assert.ok(isHidden(palette), "Escape closes the command palette");
+
+  // --- starting a track updates the now playing bar and window title ------
+  const libraryNav = [...app.querySelectorAll("button")].find((button) =>
+    /^library/i.test((button.textContent ?? "").trim()),
+  );
+  assert.ok(libraryNav, "the sidebar has a Library entry");
+  click(libraryNav);
+  await sleep(150);
+
+  const list = app.querySelector("cz-track-list");
+  const firstRow = list?.shadowRoot?.querySelector("[data-index], .row");
+  assert.ok(firstRow, "the track list exposes rows inside its shadow root");
+  click(firstRow);
+  await sleep(250);
+
+  const nowPlaying = app.querySelector("cz-now-playing");
+  const nowText = (nowPlaying?.shadowRoot?.textContent ?? "").replace(/\s+/g, " ");
+  assert.ok(nowText.length > 0, "the now playing bar has content after starting a track");
+  assert.notEqual(doc.title, "Cadenza", `the window title shows the current track (got "${doc.title}")`);
 
   const errors = (window as unknown as { __cadenzaErrors?: unknown[] }).__cadenzaErrors ?? [];
   assert.equal(errors.length, 0, `no uncaught renderer errors (${JSON.stringify(errors)})`);

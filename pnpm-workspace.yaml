@@ -2,7 +2,14 @@ packages:
   - packages/*
   - apps/*
 
-# Electron downloads its Chromium runtime in a postinstall script. pnpm >= 10
-# blocks install scripts by default, so allow the only one we actually need.
+# pnpm >= 10 refuses to run install scripts unless they are allow-listed.
+# Electron downloads its Chromium runtime in a postinstall script; it is the only
+# dependency in this repo that needs one.
+#
+# pnpm 10 used `onlyBuiltDependencies`; pnpm 11 replaced it with the `allowBuilds`
+# map. Both are listed so the repo installs cleanly with either version.
+allowBuilds:
+  electron: true
+
 onlyBuiltDependencies:
   - electron
