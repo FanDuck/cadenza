@@ -28,6 +28,19 @@ Cadenza 同时是两样东西：
 大多数播放器是封闭的黑盒，Cadenza 生来就是要被打开的：插件拥有和内建界面同等的能力，
 而界面本身也可以被替换。
 
+## 下载
+
+每个 [Release](https://github.com/FanDuck/cadenza/releases) 都附带 Windows 安装包：
+
+| 文件 | 说明 |
+| --- | --- |
+| `Cadenza-Setup-*.exe` | 安装版（当前用户安装，可自选目录） |
+| `Cadenza-*-portable.exe` | 便携版，单个 exe，双击即用，无需安装 |
+| `Cadenza-*-win.zip` | 解压后运行 `Cadenza.exe` |
+
+> 安装包**未做数字签名**，首次运行 Windows SmartScreen 会提示：点
+> **更多信息 → 仍要运行** 即可。详见 [docs/RELEASING.md](docs/RELEASING.md)。
+
 ## 功能
 
 **播放**

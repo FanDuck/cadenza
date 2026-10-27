@@ -16,7 +16,9 @@ good enough. Anything in this list is open for contribution.
 
 ## v0.2 — packaging and polish
 
-- [ ] `electron-builder` NSIS installer and portable build, signed releases
+- [x] `electron-builder` NSIS installer, portable exe and zip, built and attached to
+      GitHub releases by CI on every `v*` tag
+- [ ] Code signing certificate, so SmartScreen stops warning
 - [ ] Windows System Media Transport Controls (SMTC) so the OS media flyout shows
       artwork and track metadata
 - [ ] Gapless playback and crossfade

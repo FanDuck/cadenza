@@ -28,7 +28,7 @@
     "check:links": "node scripts/check-links.mjs",
     "check:encoding": "node scripts/check-encoding.mjs",
     "package": "pnpm build && node scripts/package-app.mjs",
-    "dist": "pnpm package && electron-builder --win --config apps/desktop/electron-builder.yml",
+    "dist": "pnpm package && electron-builder --win --config apps/desktop/electron-builder.yml --publish never",
     "clean": "pnpm -r clean"
   },
   "devDependencies": {
