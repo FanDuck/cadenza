@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Render the repository banner / GitHub social preview (1280x640).
 
 One-off asset script. Requires Pillow.
@@ -18,8 +18,8 @@ ICON = ROOT / "apps" / "desktop" / "resources" / "icon.png"
 
 W, H = 1280, 640
 BG = (8, 9, 13)
-VIOLET = (139, 92, 246)
-CYAN = (34, 211, 238)
+VIOLET = (255, 204, 77)   # duck gold
+CYAN = (255, 158, 77)     # amber
 TEXT = (238, 241, 248)
 DIM = (154, 164, 187)
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Generate Cadenza's raster assets (app icon + taskbar glyphs).
 
 This is a one-off asset script, not part of the build. Run it only when the
@@ -20,8 +20,8 @@ ROOT = Path(__file__).resolve().parent.parent
 RESOURCES = ROOT / "apps" / "desktop" / "resources"
 TASKBAR = RESOURCES / "taskbar"
 
-VIOLET = (139, 92, 246)
-CYAN = (34, 211, 238)
+VIOLET = (255, 204, 77)   # duck gold
+CYAN = (255, 158, 77)     # amber
 
 
 def linear_gradient(size: int, start: tuple[int, int, int], end: tuple[int, int, int]) -> Image.Image:

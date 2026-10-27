@@ -21,6 +21,7 @@
     "dev": "pnpm build && pnpm --filter @fanduck/cadenza-desktop dev",
     "demo": "pnpm build && node scripts/serve-demo.mjs",
     "screenshot": "pnpm build && pnpm --filter @fanduck/cadenza-desktop screenshot",
+    "screenshot:safe": "pnpm build && pnpm --filter @fanduck/cadenza-desktop screenshot:safe",
     "test": "node scripts/build.mjs && pnpm -r test",
     "typecheck": "node scripts/build.mjs && pnpm -r typecheck",
     "check:bundle": "node scripts/check-bundle.mjs",

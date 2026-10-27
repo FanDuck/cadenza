@@ -154,8 +154,10 @@ export function createLibraryView(ctx: UiContext): ViewPart {
     list.emptyText = filtered ? "No tracks match your search" : "Your library is empty";
     emptyWrap.hidden = hasTracks || scanning;
     rescanButton.disabled = scanning || state.settings.libraryRoots.length === 0;
-    hint.textContent = hasTracks
-      ? `${describeCount(tracks.length, "song")} | ${describeDuration(tracks.reduce((sum, track) => sum + track.duration, 0))}`
+    // The view header already shows the totals, so this hint only earns its place
+    // when a filter is narrowing the list.
+    hint.textContent = filtered
+      ? `${describeCount(tracks.length, "song")} of ${describeCount(state.tracks.length, "song")}`
       : "";
 
     updateFilter(state);

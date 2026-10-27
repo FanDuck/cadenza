@@ -13,6 +13,7 @@
     "start:safe": "electron . --safe",
     "dev": "electron . --dev",
     "screenshot": "electron . --screenshot=../../screenshots/app.png",
+    "screenshot:safe": "electron . --safe --screenshot=../../screenshots/app.png",
     "typecheck": "tsc -p tsconfig.main.json --noEmit && tsc -p tsconfig.renderer.json --noEmit",
     "test": "node --test \"test/*.test.ts\"",
     "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\""
