@@ -26,7 +26,7 @@ Useful scripts:
 | `pnpm dev` | Same, with DevTools attached |
 | `pnpm demo` | Opens the browser demo with sample data (no Electron needed) |
 | `pnpm test` | Builds, then runs the whole test suite |
-| `pnpm typecheck` | Type-checks without emitting |
+| `pnpm typecheck` | Builds (types of the workspace packages are generated), then type-checks |
 | `pnpm screenshot` | Writes `screenshots/app.png` from a running window |
 
 ## Ground rules

@@ -37,17 +37,22 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
-      - name: Typecheck
-        run: pnpm typecheck
-
       - name: Build
         run: pnpm build
+
+      # After the build on purpose: `apps/desktop` imports the workspace packages
+      # through their package.json `types` entry (packages/*/dist/index.d.ts).
+      - name: Typecheck
+        run: pnpm typecheck
 
       - name: Test
         run: pnpm test
 
       - name: Check renderer bundle wiring
         run: node scripts/check-bundle.mjs
+
+      - name: Check documentation links
+        run: node scripts/check-links.mjs
 
       - name: Verify renderer artifacts
         shell: pwsh
