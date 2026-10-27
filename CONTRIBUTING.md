@@ -6,7 +6,8 @@ new to programming — "I don't know how to do X" is a perfectly good question h
 ## Getting set up
 
 Requirements: **Windows 10/11**, [Node.js](https://nodejs.org) 20 or newer, and
-[pnpm](https://pnpm.io) 9 or newer.
+[pnpm](https://pnpm.io) 9 or newer. The test suite runs `.ts` files directly, which
+needs Node 22.18+ (24 recommended); building and running the app works on Node 20.
 
 ```powershell
 git clone https://github.com/FanDuck/cadenza.git

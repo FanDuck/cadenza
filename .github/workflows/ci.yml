@@ -28,7 +28,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # Node 24 runs the .ts test files directly (type stripping), no build step
+          # required for the test files themselves.
+          node-version: 24
           cache: pnpm
 
       - name: Install
@@ -42,6 +44,9 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+      - name: Check renderer bundle wiring
+        run: node scripts/check-bundle.mjs
 
       - name: Verify renderer artifacts
         shell: pwsh
